@@ -13,7 +13,7 @@ interface UseChatReturn {
   error: string | null;
   conversationId: string | null;
   sendMessage: (content: string) => Promise<void>;
-  messagesEndRef: React.RefObject<HTMLDivElement>;
+  messagesEndRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const CONVERSATION_ID_KEY = 'chat_conversation_id';
@@ -31,7 +31,7 @@ export function useChat(): UseChatReturn {
   const [error, setError] = useState<string | null>(null);
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [historyLoaded, setHistoryLoaded] = useState<boolean>(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   /**
    * Load conversationId from localStorage on mount and fetch history
